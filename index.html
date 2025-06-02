@@ -1,77 +1,406 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nós Dois ❤️</title>
+  <title>Para Mary 02/06/2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    html, body {
+    body {
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
-      background: linear-gradient(135deg, #0b2346, #000);
-      color: white;
+      color: #fff;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0b2346 0%, #000000 100%);
+      min-height: 100vh;
+      position: relative;
     }
+
+    #background-brilho {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      animation: brilhoAnim 20s ease-in-out infinite;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 70%), 
+                  radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.08), transparent 70%);
+    }
+
+    @keyframes brilhoAnim {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.9; }
+    }
+
+    .star {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: blink 2s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .floating-text {
+      position: fixed;
+      font-family: 'Parisienne', cursive;
+      font-size: 1.4rem;
+      color: #ffd6f0;
+      animation: floatText 20s linear infinite;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(100vh); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      font-family: 'Parisienne', cursive;
+      color: #fff;
+      position: relative;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 10;
+      animation: fadeIn 1.5s ease-in;
+      user-select: none;
+    }
+
+    header:hover {
+      color: #ffd6f0;
+      text-shadow: 0 0 10px #ffd6f0;
+    }
+
+    .romantic-text {
+      font-family: 'Parisienne', cursive;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1.5rem;
+      text-align: center;
+      font-size: 1.6rem;
+      color: #fff;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 2s ease-in;
+      user-select: none;
+    }
+
+    .btn-carta {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.8rem 2rem;
+      background-color: #ffd6f0;
+      border: none;
+      color: #0b2346;
+      font-size: 1rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(255, 214, 240, 0.7);
+      user-select: none;
+    }
+
+    .btn-carta:hover {
+      background-color: #fbb8da;
+    }
+
+    .carta {
+      max-width: 600px;
+      margin: 1rem auto;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 2rem;
+      font-size: 1.4rem;
+      display: none;
+      animation: pop 1s ease-in-out;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      user-select: none;
+    }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
+      gap: 2rem;
       padding: 2rem;
     }
+
     .gallery img {
-      width: 300px;
+      width: 280px;
+      height: auto;
       border-radius: 1rem;
-      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
       transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
-    #lightbox {
-      display: none;
+
+    .caption {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #ffd6f0;
+      user-select: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      animation: pulse 4s infinite ease-in-out;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #ffd6f0; }
+      50% { text-shadow: 0 0 20px #ff8ecf; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Modal fullscreen */
+    #modal {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      width: 100vw;
+      height: 100vh;
       background: rgba(0,0,0,0.9);
-      justify-content: center;
+      display: none;
       align-items: center;
-      z-index: 9999;
+      justify-content: center;
+      z-index: 100;
+      cursor: pointer;
     }
-    #lightbox img {
-      max-width: 95vw;
-      max-height: 95vh;
+
+    #modal img {
+      max-width: 90%;
+      max-height: 90%;
       border-radius: 1rem;
+      box-shadow: 0 0 20px #fff;
+      user-select: none;
+    }
+
+    /* Mini player flutuante */
+    .audio-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      z-index: 99;
+    }
+
+    .audio-controls button {
+      background: #ffd6f0;
+      border: none;
+      border-radius: 50%;
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      color: #0b2346;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 214, 240, 0.6);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .audio-controls button:hover {
+      background-color: #fbb8da;
+      transform: scale(1.1);
+    }
+
+    .audio-controls input[type=range] {
+      width: 100px;
+      height: 5px;
+      border-radius: 5px;
+      background: #ffd6f0;
+      accent-color: #ffd6f0;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center; padding:1rem;">Feliz 1 mês, meu amor! 💖</h1>
 
-  <audio autoplay loop controls style="display:block; margin: 1rem auto;">
-    <source src="audio/musica_romantica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+  <div id="background-brilho"></div>
 
-  <div class="gallery">
-    <img src="imagens/foto1.jpg" alt="Foto 1" onclick="openLightbox(this.src)" />
-    <img src="imagens/foto2.jpg" alt="Foto 2" onclick="openLightbox(this.src)" />
-    <img src="imagens/screenshot.png" alt="Foto 3" onclick="openLightbox(this.src)" />
-    <img src="imagens/img_174326.jpg" alt="Foto 4" onclick="openLightbox(this.src)" />
-    <img src="imagens/foto3.jpg" alt="Foto 5" onclick="openLightbox(this.src)" />
+  <script>
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (1 + Math.random() * 2) + 's';
+      document.body.appendChild(star);
+    }
+
+    const frases = [
+      "Te amo mais a cada segundo 💖",
+      "Você é meu lar 🌹",
+      "Com você, tudo faz sentido 💫",
+      "Nosso amor é infinito 💞",
+      "Você é minha poesia viva 💌"
+    ];
+
+    frases.forEach((frase, index) => {
+      const el = document.createElement('div');
+      el.className = 'floating-text';
+      el.innerText = frase;
+      el.style.left = Math.random() * 80 + 'vw';
+      el.style.animationDelay = (index * 5) + 's';
+      document.body.appendChild(el);
+    });
+  </script>
+
+  <audio id="musica" src="audio/musica-romantica.mp3.mp3" autoplay loop></audio>
+
+  <header>Momentos Nossos 💕</header>
+
+  <div class="romantic-text">
+    Hoje celebramos nosso primeiro mês juntos...  
+    um mês de risadas, carinho, descobertas e amor.  
+    Você ilumina meus dias como ninguém.  
+    Que venham muitos outros meses, repletos de histórias, beijos e sonhos compartilhados.  
+    Te amo com tudo que há em mim! 💖  
   </div>
 
-  <div id="lightbox" onclick="this.style.display='none'">
-    <img src="" alt="Ampliada" />
+  <button class="btn-carta" onclick="toggleCarta()">💌 Abrir/Fechar Cartinha</button>
+
+  <div class="carta" id="carta">
+    Querida Maria Clara,<br /><br />
+   ⁠Feliz um mês de namoro, amor! Obrigado por se juntar a mim nessa jornada da vida e torná-la mais leve.
+
+Sua parceria e seu companheirismo fazem uma grande diferença na minha vida. Obrigado por escolher me amar e por nunca desistir do seu objetivo de colocar um sorriso no meu rosto todos os dias.
+
+Obrigado por me mostrar a cada dia o significado do verdadeiro amor e por apostar todas as fichas em nós dois. Como é bom dividir meus dias, minhas alegrias e preocupações com você.
+
+
+Que venham muitos outros meses e anos de parceria,Obrigado por me fazer tão feliz, por rir das minhas bobeiras, pelo seu apoio incondicional, por me dar os melhores conselhos e por ser minha companheira para todas as horas. Te amo demais princesa 💞
+Amor meu ❤️❤️❤️ 
+    Cada momento contigo é único e especial.<br /><br />
+    Obrigado(a) por ser quem você é.  
+    Que a gente continue juntos, rindo, sonhando e amando!<br /><br />
+    Com todo meu amor,<br />
+    💘 a pessoa que mais te irrita.
+  </div>
+
+  <div class="gallery">
+    <div>
+      <img src="imagens/foto1.jpg.png" alt="Casal 1" onclick="openModal(this)" />
+      <div class="caption">Caminhando juntos para sempre</div>
+    </div>
+    <div>
+      <img src="imagens/foto2.jpg.png" alt="Casal 2" onclick="openModal(this)" />
+      <div class="caption">Seu beijo é meu lar</div>
+    </div>
+    <div>
+      <img src="imagens/screen.jpg.png" alt="Casal 3" onclick="openModal(this)" />
+      <div class="caption">Ficaremos juntos até o fim</div>
+    </div>
+    <div>
+      <img src="imagens/img.jpg.jpg" alt="Você" onclick="openModal(this)" />
+      <div class="caption">O amor da minha vida 💖</div>
+    </div>
+    <div>
+      <img src="imagens/foto3.jpg.png" alt="Casal 4" onclick="openModal(this)" />
+      <div class="caption">Superando as Adversidades Juntos</div>
+    </div>
+  </div>
+
+  <footer>
+    Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!
+    <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
+  </footer>
+
+  <!-- Modal imagem -->
+  <div id="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Imagem em destaque" />
+  </div>
+
+  <!-- Mini player fixo -->
+  <div class="audio-controls">
+    <button onclick="playMusic()">▶️</button>
+    <button onclick="pauseMusic()">⏸️</button>
+    <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="alterarVolumeRange(this.value)">
   </div>
 
   <script>
-    function openLightbox(src) {
-      const lb = document.getElementById("lightbox");
-      lb.querySelector("img").src = src;
-      lb.style.display = "flex";
+    function toggleCarta() {
+      const carta = document.getElementById('carta');
+      carta.style.display = (carta.style.display === 'block') ? 'none' : 'block';
+    }
+
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+
+    function openModal(img) {
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalImg.src = "";
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    const audio = document.getElementById('musica');
+
+    function playMusic() {
+      audio.play();
+    }
+
+    function pauseMusic() {
+      audio.pause();
+    }
+
+    function alterarVolumeRange(valor) {
+      audio.volume = parseFloat(valor);
     }
   </script>
+
 </body>
 </html>
