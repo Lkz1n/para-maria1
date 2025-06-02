@@ -147,15 +147,16 @@
       padding: 2rem;
     }
 
-    .gallery img {
-      width: 280px;
-      height: auto;
-      border-radius: 1rem;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
+   .gallery img {
+  width: 280px;
+  height: 280px;        /* mesma altura para todas */
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+  object-fit: cover;    /* para cortar a imagem e preencher o quadrado */
+}
 
     .gallery img:hover {
       transform: scale(1.05);
@@ -258,6 +259,77 @@
       accent-color: #ffd6f0;
       cursor: pointer;
     }
+<style>
+  /* Container das nuvens */
+  #clouds {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* não atrapalha clique */
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* Estilo base da nuvem */
+  .cloud {
+    position: absolute;
+    background: #fff;
+    background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.05));
+    animation-timing-function: linear;
+  }
+
+  /* Nuvens diferentes (tamanhos e posições) */
+  .cloud1 {
+    width: 200px;
+    height: 60px;
+    top: 20vh;
+    left: -220px;
+    animation: moveCloud 60s linear infinite;
+  }
+
+  .cloud2 {
+    width: 150px;
+    height: 50px;
+    top: 40vh;
+    left: -180px;
+    animation: moveCloud 80s linear infinite;
+    animation-delay: 20s;
+  }
+
+  .cloud3 {
+    width: 180px;
+    height: 55px;
+    top: 60vh;
+    left: -200px;
+    animation: moveCloud 70s linear infinite;
+    animation-delay: 10s;
+  }
+
+  /* Animação que move a nuvem da esquerda para a direita */
+  @keyframes moveCloud {
+    0% {
+      transform: translateX(0);
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(110vw);
+      opacity: 0;
+    }
+  }
+</style>
+
+<div id="clouds">
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+</div>
   </style>
 </head>
 <body>
@@ -323,7 +395,41 @@ Amor meu ❤️❤️❤️
     Com todo meu amor,<br />
     💘 a pessoa que mais te irrita.
   </div>
+<!-- Áudios para efeitos sonoros -->
+<audio id="somClique" src="audio/cartoon.mp3" preload="auto"></audio>
+<audio id="somGato" src="audio/gato1.mp3" preload="auto"></audio>
 
+<!-- Modal imagem -->
+<div id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Imagem em destaque" />
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const somClique = document.getElementById('somClique');
+  const somGato = document.getElementById('somGato');
+
+  function openModal(img) {
+    somClique.currentTime = 0;
+    somClique.play();
+
+    somGato.currentTime = 0;
+    somGato.play();
+
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+</script>
   <div class="gallery">
     <div>
       <img src="imagens/foto1.jpg.png" alt="Casal 1" onclick="openModal(this)" />
@@ -347,11 +453,13 @@ Amor meu ❤️❤️❤️
     </div>
   </div>
 
-  <footer>
-    Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!
-    <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
-  </footer>
-
+ <footer>
+  Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!<br />
+  <a href="https://discord.gg/XKH56Ucs" target="_blank" style="color: #ffd6f0; text-decoration: none; font-weight: bold;">
+    💬 Nossas Fotos
+  </a>
+  <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
+</footer>
   <!-- Modal imagem -->
   <div id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Imagem em destaque" />
