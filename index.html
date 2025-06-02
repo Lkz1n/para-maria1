@@ -5,23 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para Mary 02/06/2025</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-  #mensagem-fixa {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: red;
-    background: rgba(0,0,0,0.6);
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    user-select: none;
-    z-index: 9999;
-  }
-
-<div id="mensagem-fixa">Maria Clara te amo</div>
+  <style>
     body {
       font-family: 'Open Sans', sans-serif;
       margin: 0;
@@ -164,15 +148,14 @@
     }
 
     .gallery img {
-  width: 280px;
-  height: 280px;        /* mesma altura para todas */
-  border-radius: 1rem;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  user-select: none;
-  object-fit: cover;    /* para cortar a imagem e preencher o quadrado */
-}
+      width: 280px;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
 
     .gallery img:hover {
       transform: scale(1.05);
@@ -278,40 +261,6 @@
   </style>
 </head>
 <body>
-<!-- Áudios para efeitos sonoros -->
-<audio id="somClique" src="audio/cartoon.wav" preload="auto"></audio>
-<audio id="somGato" src="audio/gato1.wav" preload="auto"></audio>
-
-<!-- Modal imagem -->
-<div id="modal" onclick="closeModal()">
-  <img id="modal-img" src="" alt="Imagem em destaque" />
-</div>
-
-<script>
-  const modal = document.getElementById("modal");
-  const modalImg = document.getElementById("modal-img");
-  const somClique = document.getElementById('somClique');
-  const somGato = document.getElementById('somGato');
-
-  function openModal(img) {
-    somClique.currentTime = 0;
-    somClique.play();
-
-    somGato.currentTime = 0;
-    somGato.play();
-
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-    modalImg.src = "";
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
 
   <div id="background-brilho"></div>
 
@@ -342,7 +291,7 @@
       document.body.appendChild(el);
     });
   </script>
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDcuODI2IDguMTQzMkM0My44MzggMy43NTkxIDM4LjE4NyAxIDMyIDFDMjUuODEzIDAgMjAuMTYyIDMuNzU5MSAxNi4xNzQgOC4xNDMyQzEyLjE4NSA4LjUzMDkgOSAxMi4xOTggOSA1LjgxMjFDMCAxNi4xMzcgMjMuMzc1IDI4LjM1NiAzMiAzNi41QzQwLjYyNSAyOC4zNTYgNjQgMTYuMTM3IDU1IDEyLjAwOUM1NSAxMi4xOTggNTEuODE1IDguNTMwOSA0Ny44MjYgOC4xNDMyWiIgZmlsbD0icmVkIi8+PC9zdmc+" type="image/svg+xml" />
+
   <audio id="musica" src="audio/musica-romantica.mp3.mp3" autoplay loop></audio>
 
   <header>Momentos Nossos 💕</header>
@@ -397,15 +346,12 @@ Amor meu ❤️❤️❤️
       <div class="caption">Superando as Adversidades Juntos</div>
     </div>
   </div>
-<footer>
-  Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!<br />
-  <a href="https://discord.gg/XKH56Ucs" target="_blank" style="color: #ffd6f0; text-decoration: none; font-weight: bold;">
-    💬Para acessar nossas Fotos!!!
-  
-  
-  </a>
-  <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
-</footer>
+
+  <footer>
+    Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!
+    <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
+  </footer>
+
   <!-- Modal imagem -->
   <div id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Imagem em destaque" />
@@ -457,4 +403,4 @@ Amor meu ❤️❤️❤️
   </script>
 
 </body>
-</html>
+</html> 
