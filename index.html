@@ -322,61 +322,159 @@
       opacity: 0;
     }
   }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0b2346 0%, #000000 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* (Todos os outros estilos do seu código aqui, sem alterações) */
   </style>
 </head>
 <body>
+
+<!-- Nuvens -->
 <div id="clouds">
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
 </div>
-  <div id="background-brilho"></div>
 
-  <script>
-    for (let i = 0; i < 50; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (1 + Math.random() * 2) + 's';
-      document.body.appendChild(star);
-    }
+<!-- Fundo com brilhos -->
+<div id="background-brilho"></div>
 
-    const frases = [
-      "Te amo mais a cada segundo 💖",
-      "Você é meu lar 🌹",
-      "Com você, tudo faz sentido 💫",
-      "Nosso amor é infinito 💞",
-      "Você é minha poesia viva 💌"
-    ];
-frases.forEach((frase, index) => {
-      const el = document.createElement('div');
-      el.className = 'floating-text';
-      el.innerText = frase;
-      el.style.left = Math.random() * 80 + 'vw';
-      el.style.animationDelay = (index * 5) + 's';
-      document.body.appendChild(el);
-    });
-  // Cartinha
+<!-- Cabeçalho -->
+<header>Momentos Nossos 💕</header>
+
+<!-- Texto principal -->
+<div class="romantic-text">
+  Hoje celebramos nosso primeiro mês juntos...  
+  um mês de risadas, carinho, descobertas e amor.  
+  Você ilumina meus dias como ninguém.  
+  Que venham muitos outros meses, repletos de histórias, beijos e sonhos compartilhados.  
+  Te amo com tudo que há em mim! 💖  
+</div>
+
+<!-- Botão de carta -->
+<button class="btn-carta" onclick="toggleCarta()">💌 Abrir/Fechar Cartinha</button>
+
+<!-- Cartinha -->
+<div class="carta" id="carta">
+  Querida Maria Clara,<br /><br />
+  Feliz um mês de namoro, amor! Obrigado por se juntar a mim nessa jornada da vida e torná-la mais leve.<br /><br />
+  Sua parceria e seu companheirismo fazem uma grande diferença na minha vida. Obrigado por escolher me amar e por nunca desistir do seu objetivo de colocar um sorriso no meu rosto todos os dias.<br /><br />
+  Obrigado por me mostrar a cada dia o significado do verdadeiro amor e por apostar todas as fichas em nós dois. Como é bom dividir meus dias, minhas alegrias e preocupações com você.<br /><br />
+  Que venham muitos outros meses e anos de parceria. Obrigado por me fazer tão feliz, por rir das minhas bobeiras, pelo seu apoio incondicional, por me dar os melhores conselhos e por ser minha companheira para todas as horas. Te amo demais princesa 💞<br /><br />
+  Amor meu ❤️❤️❤️ 
+  Cada momento contigo é único e especial.<br /><br />
+  Obrigado(a) por ser quem você é.  
+  Que a gente continue juntos, rindo, sonhando e amando!<br /><br />
+  Com todo meu amor,<br />
+  💘 a pessoa que mais te irrita.
+</div>
+
+<!-- Galeria de fotos -->
+<div class="gallery">
+  <div>
+    <img src="imagens/foto1.jpg.png" alt="Casal 1" onclick="openModal(this)" />
+    <div class="caption">Caminhando juntos para sempre</div>
+  </div>
+  <div>
+    <img src="imagens/foto2.jpg.png" alt="Casal 2" onclick="openModal(this)" />
+    <div class="caption">Seu beijo é meu lar</div>
+  </div>
+  <div>
+    <img src="imagens/foto5.png" alt="Casal 5" onclick="openModal(this)" />
+    <div class="caption">Seu sorriso me traz paz</div>
+  </div>
+  <div>
+    <img src="imagens/screen.jpg.png" alt="Casal 3" onclick="openModal(this)" />
+    <div class="caption">Ficaremos juntos até o fim</div>
+  </div>
+  <div>
+    <img src="imagens/img.jpg.jpg" alt="Você" onclick="openModal(this)" />
+    <div class="caption">O amor da minha vida 💖</div>
+  </div>
+  <div>
+    <img src="imagens/foto3.jpg.png" alt="Casal 4" onclick="openModal(this)" />
+    <div class="caption">Superando as Adversidades Juntos</div>
+  </div>
+</div>
+
+<!-- Rodapé -->
+<footer>
+  Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!<br />
+  <a href="https://discord.gg/XKH56Ucs" target="_blank" style="color: #ffd6f0; text-decoration: none; font-weight: bold;">
+    💬 Nossas Fotos
+  </a>
+  <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
+</footer>
+
+<!-- Modal imagem -->
+<div id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Imagem em destaque" />
+</div>
+
+<!-- Mini player de música -->
+<div class="audio-controls">
+  <button onclick="playMusic()">▶️</button>
+  <button onclick="pauseMusic()">⏸️</button>
+  <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="alterarVolumeRange(this.value)">
+</div>
+
+<!-- Áudios -->
+<audio id="musica" src="audio/musica-romantica.mp3" autoplay loop></audio>
+<audio id="somClique" src="audio/cartoon.mp3" preload="auto"></audio>
+<audio id="somGato" src="audio/gato1.mp3" preload="auto"></audio>
+
+<!-- Scripts -->
+<script>
+  // Estrelas
+  for (let i = 0; i < 50; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDuration = (1 + Math.random() * 2) + 's';
+    document.body.appendChild(star);
+  }
+
+  // Frases flutuantes
+  const frases = [
+    "Te amo mais a cada segundo 💖",
+    "Você é meu lar 🌹",
+    "Com você, tudo faz sentido 💫",
+    "Nosso amor é infinito 💞",
+    "Você é minha poesia viva 💌"
+  ];
+  frases.forEach((frase, index) => {
+    const el = document.createElement('div');
+    el.className = 'floating-text';
+    el.innerText = frase;
+    el.style.left = Math.random() * 80 + 'vw';
+    el.style.animationDelay = (index * 5) + 's';
+    document.body.appendChild(el);
+  });
+
+  // Mostrar ou esconder a carta
   function toggleCarta() {
     const carta = document.getElementById('carta');
     carta.style.display = (carta.style.display === 'block') ? 'none' : 'block';
   }
 
-  // Modal imagem
+  // Modal de imagem
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
 
   function openModal(img) {
-    const somClique = document.getElementById('somCartoon');
-    const somGato = document.getElementById('somGato1');
-
-    somCartoon.currentTime = 0;
-    somCartoon.play();
-
-    somGato1.currentTime = 0;
-    somGato1.play();
-
+    document.getElementById('somClique').play();
+    document.getElementById('somGato').play();
     modal.style.display = "flex";
     modalImg.src = img.src;
   }
@@ -404,132 +502,7 @@ frases.forEach((frase, index) => {
   function alterarVolumeRange(valor) {
     audio.volume = parseFloat(valor);
   }
-
-  
-  </script>
-
-  <audio id="musica" src="audio/musica-romantica.mp3.mp3" autoplay loop></audio>
-
-  <header>Momentos Nossos 💕</header>
-
-  <div class="romantic-text">
-    Hoje celebramos nosso primeiro mês juntos...  
-    um mês de risadas, carinho, descobertas e amor.  
-    Você ilumina meus dias como ninguém.  
-    Que venham muitos outros meses, repletos de histórias, beijos e sonhos compartilhados.  
-    Te amo com tudo que há em mim! 💖  
-  </div>
-
-  <button class="btn-carta" onclick="toggleCarta()">💌 Abrir/Fechar Cartinha</button>
-
-  <div class="carta" id="carta">
-    Querida Maria Clara,<br /><br />
-   ⁠Feliz um mês de namoro, amor! Obrigado por se juntar a mim nessa jornada da vida e torná-la mais leve.
-
-Sua parceria e seu companheirismo fazem uma grande diferença na minha vida. Obrigado por escolher me amar e por nunca desistir do seu objetivo de colocar um sorriso no meu rosto todos os dias.
-
-Obrigado por me mostrar a cada dia o significado do verdadeiro amor e por apostar todas as fichas em nós dois. Como é bom dividir meus dias, minhas alegrias e preocupações com você.
-
-
-Que venham muitos outros meses e anos de parceria,Obrigado por me fazer tão feliz, por rir das minhas bobeiras, pelo seu apoio incondicional, por me dar os melhores conselhos e por ser minha companheira para todas as horas. Te amo demais princesa 💞
-Amor meu ❤️❤️❤️ 
-    Cada momento contigo é único e especial.<br /><br />
-    Obrigado(a) por ser quem você é.  
-    Que a gente continue juntos, rindo, sonhando e amando!<br /><br />
-    Com todo meu amor,<br />
-    💘 a pessoa que mais te irrita.
-  </div>
-<!-- Áudios para efeitos sonoros -->
-<audio id="somClique" src="audio/cartoon.mp3" preload="auto"></audio>
-<audio id="somGato" src="audio/gato1.mp3" preload="auto"></audio>
-
-<!-- Modal imagem -->
-<div id="modal" onclick="closeModal()">
-  <img id="modal-img" src="" alt="Imagem em destaque" />
-</div>
-  <div class="gallery">
-    <div>
-      <img src="imagens/foto1.jpg.png" alt="Casal 1" onclick="openModal(this)" />
-      <div class="caption">Caminhando juntos para sempre</div>
-    </div>
-    <div>
-      <img src="imagens/foto2.jpg.png" alt="Casal 2" onclick="openModal(this)" />
-      <div class="caption">Seu beijo é meu lar</div>
-    </div>
-       <div>
-        <img src="imagens/foto5.png" alt="Casal 5" onclick="openModal(this)" />
-        <div class="caption">Seu sorriso me traz paz</div>
-     </div>
-    <div>
-      <img src="imagens/screen.jpg.png" alt="Casal 3" onclick="openModal(this)" />
-      <div class="caption">Ficaremos juntos até o fim</div>
-    </div>
-    <div>
-      <img src="imagens/img.jpg.jpg" alt="Você" onclick="openModal(this)" />
-      <div class="caption">O amor da minha vida 💖</div>
-    </div>
-    <div>
-      <img src="imagens/foto3.jpg.png" alt="Casal 4" onclick="openModal(this)" />
-      <div class="caption">Superando as Adversidades Juntos</div>
-    </div>
-  </div>
-
- <footer>
-  Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!<br />
-  <a href="https://discord.gg/XKH56Ucs" target="_blank" style="color: #ffd6f0; text-decoration: none; font-weight: bold;">
-    💬 Nossas Fotos
-  </a>
-  <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
-</footer>
-  <!-- Modal imagem -->
-  <div id="modal" onclick="closeModal()">
-    <img id="modal-img" src="" alt="Imagem em destaque" />
-  </div>
-
-  <!-- Mini player fixo -->
-  <div class="audio-controls">
-    <button onclick="playMusic()">▶️</button>
-    <button onclick="pauseMusic()">⏸️</button>
-    <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="alterarVolumeRange(this.value)">
-  </div>
-
-  <script>
-    function toggleCarta() {
-      const carta = document.getElementById('carta');
-      carta.style.display = (carta.style.display === 'block') ? 'none' : 'block';
-    }
-
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-
-    function openModal(img) {
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-    }
-
-    function closeModal() {
-      modal.style.display = "none";
-      modalImg.src = "";
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-
-    const audio = document.getElementById('musica');
-
-    function playMusic() {
-      audio.play();
-    }
-
-    function pauseMusic() {
-      audio.pause();
-    }
-
-    function alterarVolumeRange(valor) {
-      audio.volume = parseFloat(valor);
-    }
-  </script>
+</script>
 
 </body>
-</html> 
+</html>
