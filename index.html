@@ -351,8 +351,7 @@
       "Nosso amor é infinito 💞",
       "Você é minha poesia viva 💌"
     ];
-
-    frases.forEach((frase, index) => {
+frases.forEach((frase, index) => {
       const el = document.createElement('div');
       el.className = 'floating-text';
       el.innerText = frase;
@@ -360,6 +359,55 @@
       el.style.animationDelay = (index * 5) + 's';
       document.body.appendChild(el);
     });
+  // Cartinha
+  function toggleCarta() {
+    const carta = document.getElementById('carta');
+    carta.style.display = (carta.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // Modal imagem
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+
+  function openModal(img) {
+    const somClique = document.getElementById('somClique');
+    const somGato = document.getElementById('somGato');
+
+    somClique.currentTime = 0;
+    somClique.play();
+
+    somGato.currentTime = 0;
+    somGato.play();
+
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Música
+  const audio = document.getElementById('musica');
+
+  function playMusic() {
+    audio.play();
+  }
+
+  function pauseMusic() {
+    audio.pause();
+  }
+
+  function alterarVolumeRange(valor) {
+    audio.volume = parseFloat(valor);
+  }
+
+  
   </script>
 
   <audio id="musica" src="audio/musica-romantica.mp3.mp3" autoplay loop></audio>
