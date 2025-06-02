@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nós Dois ❤️</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #0b2346, #000);
+      color: white;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .gallery img {
+      width: 300px;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #lightbox img {
+      max-width: 95vw;
+      max-height: 95vh;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; padding:1rem;">Feliz 1 mês, meu amor! 💖</h1>
+
+  <audio autoplay loop controls style="display:block; margin: 1rem auto;">
+    <source src="audio/musica_romantica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="gallery">
+    <img src="imagens/foto1.jpg" alt="Foto 1" onclick="openLightbox(this.src)" />
+    <img src="imagens/foto2.jpg" alt="Foto 2" onclick="openLightbox(this.src)" />
+    <img src="imagens/screenshot.png" alt="Foto 3" onclick="openLightbox(this.src)" />
+    <img src="imagens/img_174326.jpg" alt="Foto 4" onclick="openLightbox(this.src)" />
+    <img src="imagens/foto3.jpg" alt="Foto 5" onclick="openLightbox(this.src)" />
+  </div>
+
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img src="" alt="Ampliada" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lb = document.getElementById("lightbox");
+      lb.querySelector("img").src = src;
+      lb.style.display = "flex";
+    }
+  </script>
+</body>
+</html>
