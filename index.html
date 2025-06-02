@@ -322,16 +322,14 @@
       opacity: 0;
     }
   }
-
+  </style>
+</head>
+<body>
 <div id="clouds">
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
 </div>
-  </style>
-</head>
-<body>
-
   <div id="background-brilho"></div>
 
   <script>
@@ -370,14 +368,14 @@ frases.forEach((frase, index) => {
   const modalImg = document.getElementById("modal-img");
 
   function openModal(img) {
-    const somClique = document.getElementById('somClique');
-    const somGato = document.getElementById('somGato');
+    const somClique = document.getElementById('somCartoon');
+    const somGato = document.getElementById('somGato1');
 
-    somClique.currentTime = 0;
-    somClique.play();
+    somCartoon.currentTime = 0;
+    somCartoon.play();
 
-    somGato.currentTime = 0;
-    somGato.play();
+    somGato1.currentTime = 0;
+    somGato1.play();
 
     modal.style.display = "flex";
     modalImg.src = img.src;
@@ -449,33 +447,6 @@ Amor meu ❤️❤️❤️
 <div id="modal" onclick="closeModal()">
   <img id="modal-img" src="" alt="Imagem em destaque" />
 </div>
-
-<script>
-  const modal = document.getElementById("modal");
-  const modalImg = document.getElementById("modal-img");
-  const somClique = document.getElementById('somClique');
-  const somGato = document.getElementById('somGato');
-
-  function openModal(img) {
-    somClique.currentTime = 0;
-    somClique.play();
-
-    somGato.currentTime = 0;
-    somGato.play();
-
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-    modalImg.src = "";
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-</script>
   <div class="gallery">
     <div>
       <img src="imagens/foto1.jpg.png" alt="Casal 1" onclick="openModal(this)" />
