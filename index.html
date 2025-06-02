@@ -148,14 +148,15 @@
     }
 
     .gallery img {
-      width: 280px;
-      height: auto;
-      border-radius: 1rem;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
+  width: 280px;
+  height: 280px;        /* mesma altura para todas */
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+  object-fit: cover;    /* para cortar a imagem e preencher o quadrado */
+}
 
     .gallery img:hover {
       transform: scale(1.05);
@@ -355,12 +356,6 @@ Amor meu ❤️❤️❤️
   </a>
   <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
 </footer>
-
-  <footer>
-    Criado com amor 💌 por nós dois — Feliz 1 mês de namoro!
-    <div style="font-size: 1.5rem; margin-top: 0.5rem;">❤️ 💖 💞 💕 🌹</div>
-  </footer>
-
   <!-- Modal imagem -->
   <div id="modal" onclick="closeModal()">
     <img id="modal-img" src="" alt="Imagem em destaque" />
