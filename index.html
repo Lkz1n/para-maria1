@@ -262,6 +262,40 @@
   </style>
 </head>
 <body>
+<!-- Áudios para efeitos sonoros -->
+<audio id="somClique" src="audio/cartoon.wav.mp3" preload="auto"></audio>
+<audio id="somGato" src="audio/gato1.wav.mp3" preload="auto"></audio>
+
+<!-- Modal imagem -->
+<div id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Imagem em destaque" />
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const somClique = document.getElementById('somClique');
+  const somGato = document.getElementById('somGato');
+
+  function openModal(img) {
+    somClique.currentTime = 0;
+    somClique.play();
+
+    somGato.currentTime = 0;
+    somGato.play();
+
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
 
   <div id="background-brilho"></div>
 
